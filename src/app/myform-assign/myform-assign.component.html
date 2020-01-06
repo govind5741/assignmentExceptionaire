@@ -1,0 +1,107 @@
+<div class="container">
+   <div class="card">
+     <div class="card-header">
+       Profile Form
+     </div>
+     <div class="card-body">
+        <form [formGroup]="profileForm">
+          <div class="row">
+          <div class="col-md-6">
+              <label>First Name</label>
+              <input type="text" class="form-control" placeholder="Enter First Name" formControlName="firstName" required>
+          </div>
+
+          <div class="col-md-6">
+              <label>Last Name</label>
+              <input type="text" class="form-control" placeholder="Enter Last Name" formControlName="lastName" required>
+          </div>
+          <div class="col-md-6">
+              <div class="form-group">
+              <label >Email address</label>
+              <input type="text " class="form-control"  placeholder="name@gmail.com" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+         
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+                  <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+              </div>
+         
+            </div>
+          </div>
+          <div class="col-md-6">
+
+              <label >Gender</label>
+         
+              <div class="custom-control custom-radio">
+                  <input id="male" type="radio" class="custom-control-input" value="male" name="gender" formControlName="gender">
+                  <label class="custom-control-label" for="male">Male</label>
+                </div>
+    
+                <div class="custom-control custom-radio">
+                  <input id="female" type="radio" class="custom-control-input" value="female" name="gender" formControlName="gender">
+                  <label class="custom-control-label" for="female">Female</label>
+                </div>
+            </div>
+          <div class="col-md-6">
+
+              <label >Laguage Known:</label>
+        
+              <label formArrayName="orders" *ngFor="let order of profileForm.controls.orders.controls; let i = index">
+                  <input type="checkbox" [formControlName]="i">
+                  {{ordersData[i].name}}
+                </label>
+
+
+
+
+            </div>
+          <div class="col-md-6">
+
+              <label >DOB</label>
+              <input type="date" class="form-control" formControlName="Dob" required>
+          </div>
+
+          <div class="col-md-6">
+
+              <label >City</label>
+              <input type="text" class="form-control" placeholder="Enter City" formControlName="city" required>
+          </div>
+          
+          <div class="col-md-6">
+
+              <label >State</label>
+              <select class="custom-select" formControlName="state">
+                  <option value="" disabled>Choose your State</option>
+                  <option value="Assam">Assam</option>
+                  <option value="Jharkhand">Jharkhand</option>
+                  <option value="Maharastra">Maharastra</option>
+                  <option value="TamilNadu">TamilNadu</option>
+                  <option value="Kerla">Kerla</option>
+                  <option value="Delhi">Delhi</option>
+
+               </select>
+          
+            </div>
+
+
+          <div class="col-md-6">
+
+              <label >Upload resume</label>
+              <input type="file" id="residence" accept="image/x-png,image/gif,image/jpeg,image/jpg" class="form-control" formControlName="resume" required>
+            </div>
+
+           
+          </div>
+            </form>
+      
+     </div>
+     <div class="card-footer">
+       <div class="col-md-6">
+          <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+
+       </div>
+      
+     </div>
+   </div>
+     
+
+</div>
